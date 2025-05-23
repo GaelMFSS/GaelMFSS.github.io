@@ -1,0 +1,245 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acerca de - Cultura Digital 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Estilos para el menú de navegación */
+        nav {
+            background-color: #2c3e50;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            margin: 0 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #1a252f;
+        }
+
+        /* Estilos para el menú hamburguesa */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .menu-toggle .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+
+        /* Media query para dispositivos móviles */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #2c3e50;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav li {
+                margin: 10px 0;
+            }
+        }
+
+        .contenedor {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .destacado {
+            background-color: #eaf2f8;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+            margin: 20px 0;
+        }
+
+        .equipo {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .miembro {
+            text-align: center;
+            margin: 15px;
+            width: 150px;
+        }
+
+        .miembro img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border: 3px solid #2c3e50;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Menú de navegación con hamburguesa -->
+    <nav>
+        <ul id="nav-menu">
+            <li><a href="index1.html">Inicio</a></li>
+            <li><a href="tareas.html">Tareas</a></li>
+            <li><a href="recursos.html">Recursos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="acerca.html">Acerca de</a></li>
+        </ul>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+    <div class="contenedor">
+        <h1>Acerca de Cultura Digital</h1>
+        
+        <div class="destacado">
+            <h2>¿Qué es la Cultura Digital?</h2>
+            <p>La cultura digital se refiere a las prácticas, costumbres y formas de expresión que han surgido con el uso de las tecnologías digitales. Engloba desde la forma en que nos comunicamos hasta cómo creamos, compartimos y consumimos información en la era digital.</p>
+        </div>
+        
+        <h2>Nuestro Propósito</h2>
+        <p>Este sitio web fue creado como recurso educativo para la materia de Cultura Digital 2, con el objetivo de:</p>
+        <ul>
+            <li>Proporcionar información relevante sobre tecnologías digitales</li>
+            <li>Ofrecer recursos para el aprendizaje de herramientas digitales</li>
+            <li>Mostrar ejemplos prácticos de aplicaciones tecnológicas</li>
+            <li>Fomentar la alfabetización digital entre los estudiantes</li>
+        </ul>
+        
+        <h2>Enfoque Educativo</h2>
+        <p>En Cultura Digital 2 abordamos temas fundamentales para desenvolverse en el mundo digital actual, incluyendo:</p>
+        
+        <div class="equipo">
+            <div class="miembro">
+                <img src="C:\Users\gaelc\OneDrive\Documentos\web.jpg" alt="web">
+                <h3>Desarrollo Web</h3>
+                <p>HTML, CSS, JS</p>
+            </div>
+            <div class="miembro">
+                <img src="C:\Users\gaelc\OneDrive\Documentos\IA.jpg" alt="ia">
+                <h3>Inteligencia Artificial</h3>
+                <p>ChatGPT, MidJourney</p>
+            </div>
+            <div class="miembro">
+                <img src="C:\Users\gaelc\OneDrive\Documentos\diseñodigital.jpg" alt="Diseño">
+                <h3>Diseño Digital</h3>
+                <p>Canva, Piktochart</p>
+            </div>
+            <div class="miembro">
+                <img src="C:\Users\gaelc\OneDrive\Documentos\investigacion.png" alt="Investigación">
+                <h3>Investigación</h3>
+                <p>Métodos digitales</p>
+            </div>
+        </div>
+        
+        <h2>Importancia de la Cultura Digital</h2>
+        <p>En la actualidad, comprender y participar activamente en la cultura digital es esencial para:</p>
+        <ul>
+            <li>Acceder a oportunidades educativas y laborales</li>
+            <li>Participar plenamente en la sociedad contemporánea</li>
+            <li>Desarrollar pensamiento crítico sobre la tecnología</li>
+            <li>Proteger nuestra privacidad y seguridad en línea</li>
+            <li>Crear contenido digital de valor</li>
+        </ul>
+        
+    </div>
+
+    <footer>
+        <div class="copyright">
+            <p>© 2025 Cultura Digital 2 - Todos los derechos reservados</p>
+            <p>Este sitio fue creado con fines educativos como parte de un proyecto académico.</p>
+            <p>Última actualización: Mayo 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript para el menú hamburguesa
+        document.getElementById('mobile-menu').addEventListener('click', function() {
+            document.getElementById('nav-menu').classList.toggle('active');
+            this.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

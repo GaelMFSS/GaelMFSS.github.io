@@ -1,0 +1,247 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursos - Cultura Digital 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Estilos para el menú de navegación */
+        nav {
+            background-color: #2c3e50;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            margin: 0 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #1a252f;
+        }
+
+        /* Estilos para el menú hamburguesa */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .menu-toggle .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+
+        /* Media query para dispositivos móviles */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #2c3e50;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav li {
+                margin: 10px 0;
+            }
+        }
+
+        .contenedor {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .recurso {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .recurso:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .recurso h2 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+
+        .recurso p {
+            margin-bottom: 15px;
+        }
+
+        .recurso a {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .recurso a:hover {
+            background-color: #2980b9;
+        }
+
+        .categoria {
+            margin: 30px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eaeaea;
+            color: #2c3e50;
+        }
+
+ .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Menú de navegación con hamburguesa -->
+    <nav>
+        <ul id="nav-menu">
+            <li><a href="index1.html">Inicio</a></li>
+            <li><a href="tareas.html">Tareas</a></li>
+            <li><a href="recursos.html">Recursos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="acerca.html">Acerca de</a></li>
+        </ul>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+    <div class="contenedor">
+        <h1>Recursos de Cultura Digital 2</h1>
+        
+        <h2 class="categoria">Herramientas de IA</h2>
+        
+        <div class="recurso">
+            <h2>ChatGPT</h2>
+            <p>ChatGPT es un modelo de lenguaje avanzado desarrollado por OpenAI capaz de generar texto similar al humano y mantener conversaciones naturales.</p>
+            <a href="https://chat.openai.com" target="_blank">Visitar ChatGPT</a>
+        </div>
+        
+        <div class="recurso">
+            <h2>DeepSeek</h2>
+            <p>DeepSeek es un modelo de IA de código abierto conocido por su eficiencia y bajo costo de desarrollo, con capacidades avanzadas de procesamiento de lenguaje.</p>
+            <a href="https://www.deepseek.com" target="_blank">Visitar DeepSeek</a>
+        </div>
+        
+        <h2 class="categoria">Plataformas de Desarrollo</h2>
+        
+        <div class="recurso">
+            <h2>GitHub</h2>
+            <p>GitHub es una plataforma de desarrollo colaborativo para alojar proyectos utilizando el sistema de control de versiones Git.</p>
+            <a href="https://github.com" target="_blank">Visitar GitHub</a>
+        </div>
+        
+        <h2 class="categoria">Herramientas de Organización</h2>
+        
+        <div class="recurso">
+            <h2>XMind</h2>
+            <p>XMind es un software de mapas mentales que ayuda a organizar ideas, planificar proyectos y estructurar información de manera visual.</p>
+            <a href="https://www.xmind.net" target="_blank">Visitar XMind</a>
+        </div>
+        
+        <h2 class="categoria">Herramientas de Diseño</h2>
+        
+        <div class="recurso">
+            <h2>Canva</h2>
+            <p>Plataforma de diseño gráfico que permite crear presentaciones, documentos, gráficos y contenido visual para redes sociales.</p>
+            <a href="https://www.canva.com" target="_blank">Visitar Canva</a>
+        </div>
+        
+        <div class="recurso">
+            <h2>Piktochart</h2>
+            <p>Herramienta para crear infografías, presentaciones y reportes visuales de manera sencilla.</p>
+            <a href="https://piktochart.com" target="_blank">Visitar Piktochart</a>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript para el menú hamburguesa
+        document.getElementById('mobile-menu').addEventListener('click', function() {
+            document.getElementById('nav-menu').classList.toggle('active');
+            this.classList.toggle('active');
+        });
+    </script>
+</body>
+<footer>
+<div class="copyright">
+            <p>© 2025 Cultura Digital 2 - Todos los derechos reservados</p>
+            <p>Este sitio fue creado con fines educativos como parte de un proyecto académico.</p>
+            <p>Última actualización: Mayo 2025</p>
+        </div>
+</footer>
+</html>

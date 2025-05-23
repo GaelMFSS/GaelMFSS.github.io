@@ -1,0 +1,564 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tareas - Cultura Digital 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Estilos para el menú de navegación */
+        nav {
+            background-color: #2c3e50;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            margin: 0 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #1a252f;
+        }
+
+        /* Estilos para el menú hamburguesa */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .menu-toggle .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+
+        /* Media query para dispositivos móviles */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #2c3e50;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav li {
+                margin: 10px 0;
+            }
+        }
+
+        .contenedor {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .parcial {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eaeaea;
+        }
+
+        .parcial:last-child {
+            border-bottom: none;
+        }
+
+        .tarea {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #2c3e50;
+            border-radius: 0 5px 5px 0;
+            counter-increment: tarea-counter;
+            position: relative;
+        }
+
+        .tarea h3::before {
+            content: counter(tarea-counter) ". ";
+        }
+
+        .opcional {
+            border-left-color: #7f8c8d;
+            font-style: italic;
+        }
+
+        .opcional::after {
+            content: " (Opcional)";
+            color: #7f8c8d;
+        }
+
+        .extra {
+            border-left-color: #27ae60;
+        }
+
+        .extra::after {
+            content: " (Punto extra)";
+            color: #27ae60;
+        }
+
+        /* Nuevos estilos para archivos adjuntos */
+        .archivo-adjunto {
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .boton-desplegable {
+            width: 100%;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .contenido-archivo {
+            display: none;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+        
+        .contenido-archivo.active {
+            display: block;
+        }
+        
+        .acciones-archivo {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .boton-descarga {
+            padding: 5px 10px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 3px;
+        }
+        
+        .boton-eliminar {
+            padding: 5px 10px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .preview-archivo {
+            max-width: 100%;
+            max-height: 300px;
+            margin: 10px 0;
+            display: block;
+        }
+
+ .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Menú de navegación con hamburguesa -->
+    <nav>
+        <ul id="nav-menu">
+            <li><a href="index1.html">Inicio</a></li>
+            <li><a href="tareas.html">Tareas</a></li>
+            <li><a href="recursos.html">Recursos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="acerca.html">Acerca de</a></li>
+        </ul>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+    <div class="contenedor">
+        <h1>Tareas de Cultura Digital 2</h1>
+        
+        <div class="parcial">
+            <h2>Parcial 1</h2>
+            
+            <div class="tarea">
+                <h3>Diagrama de Flujo - Determinación de Triángulos</h3>
+                <p>Crear un diagrama de flujo que determine el tipo de triángulo (equilátero, isósceles o escaleno) basado en las longitudes de sus lados.</p>
+                
+                <div class="archivo-adjunto">
+                    <button class="boton-desplegable" onclick="toggleArchivoAdjunto(this)">▼ Archivo Adjunto: Diagrama de flujo.pdf</button>
+                    <div class="contenido-archivo">
+                        <embed src="Diagrama de flujo.pdf" type="application/pdf" width="100%" height="500px">
+                        <div class="acciones-archivo">
+                            <a href="Diagrama de flujo.pdf" download class="boton-descarga">Descargar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tarea">
+    <h3>Práctica de Piktochart o Canva</h3>
+    <p>Crear un diseño gráfico utilizando Piktochart o Canva sobre un tema educativo.</p>
+    
+    <div class="archivo-adjunto">
+        <button class="boton-desplegable" onclick="toggleArchivoAdjunto(this)">▼ Archivo Adjunto: Infografía Día del estudiante derechos Scrapbook Marrón y negro (1).pdf</button>
+        <div class="contenido-archivo">
+            <embed src="Infografía Día del estudiante derechos Scrapbook Marrón y negro (1).pdf" type="application/pdf" width="100%" height="500px">
+            <div class="acciones-archivo">
+                <a href="Infografía Día del estudiante derechos Scrapbook Marrón y negro (1).pdf" download class="boton-descarga">Descargar</a>
+            </div>
+        </div>
+    </div>
+</div>
+            
+           <div class="tarea">
+    <h3>Uso de IA's</h3>
+    <p>Investigar y experimentar con al menos tres herramientas de IA diferentes y presentar un informe comparativo.</p>
+    
+    <div class="archivo-adjunto">
+        <button class="boton-desplegable" onclick="toggleArchivoAdjunto(this)">▼ Archivo Adjunto: Presentación sin título.pdf</button>
+        <div class="contenido-archivo">
+            <embed src="Presentación sin título.pdf" type="application/pdf" width="100%" height="500px">
+            <div class="acciones-archivo">
+                <a href="Presentación sin título.pdf" download class="boton-descarga">Descargar</a>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="archivo-adjunto" style="margin-top: 15px;">
+        <button class="boton-desplegable" onclick="toggleArchivoAdjunto(this)">▼ Archivo Adjunto: Resumen de Cultura Digital (1).pdf</button>
+        <div class="contenido-archivo">
+            <embed src="Resumen de Cultura Digital (1).pdf" type="application/pdf" width="100%" height="500px">
+            <div class="acciones-archivo">
+                <a href="Resumen de Cultura Digital (1).pdf" download class="boton-descarga">Descargar</a>
+            </div>
+        </div>
+    </div>
+</div>
+            
+           <div class="tarea">
+    <h3>Práctica de Teoría del Color y Diseño Gráfico</h3>
+    <p>Aplicar los principios de la teoría del color en un diseño creativo, explicando las elecciones de paleta de colores.</p>
+    
+    <div class="archivo-adjunto">
+        <button class="boton-desplegable" onclick="toggleArchivoAdjunto(this)">▼ Archivo Adjunto: Infografía consejos para aprender a dibujar elegante beige.pdf</button>
+        <div class="contenido-archivo">
+            <embed src="Infografía consejos para aprender a dibujar elegante beige.pdf" type="application/pdf" width="100%" height="500px">
+            <div class="acciones-archivo">
+                <a href="Infografía consejos para aprender a dibujar elegante beige.pdf" download class="boton-descarga">Descargar</a>
+            </div>
+        </div>
+    </div>
+</div>
+            
+<div class="tarea opcional extra">
+    <h3>Crear una Página Web sobre un Tema de Interés</h3>
+    <p>Desarrollar una página web básica sobre un tema de interés personal utilizando HTML.</p>
+    
+    <div class="archivo-adjunto">
+        <button class="boton-desplegable" onclick="window.location.href='404.html'">▼ Archivo Adjunto:</button>
+    </div>
+</div>
+        
+        <div class="parcial">
+            <h2>Parcial 2</h2>
+            
+            <div class="tarea">
+                <h3>Investigación Explicativa vs. Investigación Aplicada</h3>
+                <p>Realizar un cuadro comparativo entre investigación explicativa e investigación aplicada en el contexto digital.</p>
+                
+          <div class="archivo-adjunto">
+        <button class="boton-desplegable" onclick="window.location.href='404.html'">▼ Archivo Adjunto:</button>
+    </div>
+</div>
+            
+      <div class="tarea">
+    <h3>Caso de estudio sobre el problema del tráfico en Ciudad Obregón, Sonora</h3>
+    <p>Analizar el problema del tráfico en Ciudad Obregón y proponer soluciones basadas en tecnología.</p>
+    
+    <div class="archivo-adjunto">
+        <button class="boton-desplegable" onclick="toggleArchivoAdjunto(this)">▼ Archivo Adjunto: Tráfico vehicular en Cd Obregón - Formularios de Google.pdf</button>
+        <div class="contenido-archivo">
+            <embed src="Trafico vehicular en Cd Obregón - Formularios de Google.pdf" type="application/pdf" width="100%" height="500px">
+            <div class="acciones-archivo">
+                <a href="Trafico vehicular en Cd Obregón - Formularios de Google.pdf" download class="boton-descarga">Descargar</a>
+                <button class="boton-eliminar" onclick="eliminarArchivoAdjunto(this)">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+            
+            <div class="tarea">
+                <h3>Elección y Creación de un Tema para la Elaboración de un Sitio Web</h3>
+                <p>Seleccionar un tema y planificar la estructura de un sitio web sobre dicho tema.</p>
+                
+                <div class="archivo-adjunto">
+        <button class="boton-desplegable" onclick="window.location.href='404.html'">▼ Archivo Adjunto:</button>
+    </div>
+</div>
+            
+            <div class="tarea">
+    <h3>Crear una Página Web sobre un Tema de Interés</h3>
+    <p>Desarrollar una página web básica sobre un tema de interés personal utilizando HTML.</p>
+    
+    <div class="archivo-adjunto">
+        <button class="boton-desplegable" onclick="toggleArchivoAdjunto(this)">▼ Archivo Adjunto: Mi sitio web (index.html)</button>
+        <div class="contenido-archivo">
+            <div id="html-container">
+                <!-- Vista previa del HTML -->
+                <iframe src="index (4).html" width="100%" height="500px"></iframe>
+                <div class="acciones-archivo">
+                    <a href="index (4).html" download class="boton-descarga">Descargar HTML</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="tarea">
+                <h3>Agregar Estilos CSS3 a la Página Web</h3>
+                <p>Mejorar la página web añadiendo estilos CSS para mejorar su apariencia.</p>
+                
+   <div class="archivo-adjunto">
+        <button class="boton-desplegable" onclick="window.location.href='404.html'">▼ Archivo Adjunto:</button>
+    </div>
+</div>
+           <div class="tarea">
+    <h3>Investigación de Frameworks y CDN</h3>
+    <p>Investigar sobre frameworks CSS y CDNs, y su aplicación en desarrollo web.</p>
+    
+    <div class="archivo-adjunto">
+        <button class="boton-desplegable" onclick="toggleArchivoAdjunto(this)">▼ Archivo Adjunto: CDN Frameworks.pdf</button>
+        <div class="contenido-archivo">
+            <embed src="CDN (1) (1) (1).pdf" type="application/pdf" width="100%" height="500px">
+            <div class="acciones-archivo">
+                <a href="CDN (1) (1) (1).pdf" download class="boton-descarga">Descargar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+            
+            <div class="tarea opcional">
+                <h3>Agregar un Menú Interactivo con JavaScript</h3>
+                <p>Añadir funcionalidad interactiva al menú de navegación utilizando JavaScript.</p>
+                
+                 <div class="archivo-adjunto">
+        <button class="boton-desplegable" onclick="window.location.href='404.html'">▼ Archivo Adjunto:</button>
+    </div>
+</div>
+        
+        <div class="parcial">
+            <h2>Parcial 3</h2>
+            
+<div class="tarea">
+    <h3>Aplicación de Etiquetas HTML - &lt;strong&gt;, &lt;b&gt;, &lt;em&gt;, etc</h3>
+    <p>Practicar el uso correcto de etiquetas de formato de texto en HTML.</p>
+    
+    <div class="archivo-adjunto">
+        <button class="boton-desplegable" onclick="toggleArchivoAdjunto(this)">▼ Archivo Adjunto: actividad1p3.html</button>
+        <div class="contenido-archivo">
+            <div id="html-preview-container">
+                <!-- Vista previa del HTML -->
+                <iframe id="html-preview" src="actividad1p3.html" width="100%" height="500px" style="border:1px solid #ddd; background:white;"></iframe>
+                <div class="acciones-archivo">
+                    <a href="actividad1p3.html" download class="boton-descarga">Descargar HTML</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            
+            <div class="tarea">
+    <h3>Aplicación de Etiquetas HTML - &lt;div&gt;, &lt;img&gt;, etc</h3>
+    <p>Implementar el uso de etiquetas de estructura y multimedia en una página web.</p>
+    
+    <div class="archivo-adjunto">
+        <button class="boton-desplegable" onclick="toggleArchivoAdjunto(this)">▼ Archivo Adjunto: actividad2p3.html</button>
+        <div class="contenido-archivo">
+            <div id="html-preview-container-2">
+                <!-- Vista previa del HTML -->
+                <iframe id="html-preview-2" src="actividad2p3.html" width="100%" height="500px" style="border:1px solid #ddd; background:white;"></iframe>
+                <div class="acciones-archivo">
+                    <a href="actividad2p3.html" download class="boton-descarga">Descargar HTML</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="tarea">
+    <h3>Aplicación de Etiquetas HTML - &lt;table&gt;</h3>
+    <p>Crear tablas complejas utilizando HTML para organizar información.</p>
+    
+    <div class="archivo-adjunto">
+        <button class="boton-desplegable" onclick="toggleArchivoAdjunto(this)">▼ Archivo Adjunto: actividad3p3.html</button>
+        <div class="contenido-archivo">
+            <div id="html-preview-container-3">
+                <!-- Vista previa del HTML -->
+                <iframe id="html-preview-3" src="actividad3p3.html" width="100%" height="600px" style="border:1px solid #ddd; background:white;"></iframe>
+                <div class="acciones-archivo">
+                    <a href="actividad3p3.html" download class="boton-descarga">Descargar HTML</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            
+            <div class="tarea">
+                <h3>Formularios y Elementos de Entrada en HTML</h3>
+                <p>Diseñar formularios web con diferentes tipos de campos de entrada.</p>
+                
+                <div class="archivo-adjunto">
+        <button class="boton-desplegable" onclick="toggleArchivoAdjunto(this)">▼ Archivo Adjunto: actividad4p3.html</button>
+        <div class="contenido-archivo">
+            <div id="html-preview-container-3">
+                <!-- Vista previa del HTML -->
+                <iframe id="html-preview-3" src="actividad4p3.html" width="100%" height="600px" style="border:1px solid #ddd; background:white;"></iframe>
+                <div class="acciones-archivo">
+                    <a href="actividad4p3.html" download class="boton-descarga">Descargar HTML</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        
+        <div class="parcial">
+            <h2>Parcial 4</h2>
+            
+            <div class="tarea opcional extra">
+    <h3>Video del Valor del Mes</h3>
+    <p>Crear un video corto que represente el valor del mes asignado.</p>
+    
+    <div class="archivo-adjunto">
+        <button class="boton-desplegable" onclick="toggleArchivoAdjunto(this)">▼ Archivo Adjunto: video-demo.mp4</button>
+        <div class="contenido-archivo">
+            <video controls width="100%" class="preview-archivo">
+                <source src="C:\Users\gaelc\OneDrive\Documentos\Mivideo.mp4" type="video/mp4">
+                Tu navegador no soporta el elemento de video.
+            </video>
+            <div class="acciones-archivo">
+            </div>
+        </div>
+    </div>
+</div>
+            
+            <div class="tarea">
+                <h3>Entrega de sitio web</h3>
+                <p>Entrega final del sitio web completo con todas las funcionalidades implementadas.</p>
+                
+                <div class="archivo-adjunto">
+                    <button class="boton-desplegable" onclick="toggleArchivoAdjunto(this)">▼ Archivo Adjunto: Sitio web final.zip</button>
+                    <div class="contenido-archivo">
+                        <img src="sitio-final-preview.jpg" alt="Vista previa del sitio web final" class="preview-archivo">
+                        <div class="acciones-archivo">
+                            <a href="Sitio web final.zip" download class="boton-descarga">Descargar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript para el menú hamburguesa
+        document.getElementById('mobile-menu').addEventListener('click', function() {
+            document.getElementById('nav-menu').classList.toggle('active');
+            this.classList.toggle('active');
+        });
+
+        // Funciones para el menú desplegable de archivos adjuntos
+        function toggleArchivoAdjunto(button) {
+            const contenido = button.nextElementSibling;
+            contenido.classList.toggle('active');
+            
+            // Cambiar el ícono del botón
+            if (contenido.classList.contains('active')) {
+                button.innerHTML = button.innerHTML.replace('▼', '▲');
+            } else {
+                button.innerHTML = button.innerHTML.replace('▲', '▼');
+            }
+        }
+        
+        function eliminarArchivoAdjunto(button) {
+            const archivoAdjunto = button.closest('.archivo-adjunto');
+            if (confirm('¿Estás seguro de que quieres eliminar este archivo adjunto?')) {
+                archivoAdjunto.remove();
+            }
+        }
+    </script>
+</body>
+<footer>
+<div class="copyright">
+            <p>© 2025 Cultura Digital 2 - Todos los derechos reservados</p>
+            <p>Este sitio fue creado con fines educativos como parte de un proyecto académico.</p>
+            <p>Última actualización: Mayo 2025</p>
+        </div>
+</footer>
+</html>
